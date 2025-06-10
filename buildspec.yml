@@ -3,25 +3,25 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 18 # Use your Node.js version
+      nodejs: 18
     commands:
       - echo Installing dependencies...
       - npm install
 
-  pre_build:
-    commands:
-      - echo Running lint or tests if needed...
-
   build:
     commands:
       - echo Build started on `date`
-      - node server.js
+      - echo Running app checks...
+      - node -v
+      - npm -v
+      # Do not run the server in build phase unless required
+      # This is just build, not start
+      - echo Build phase completed
 
   post_build:
     commands:
-      - echo Build completed on `date`
+      - echo Post-build started on `date`
 
 artifacts:
   files:
     - '**/*'
-  discard-paths: no
