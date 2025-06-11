@@ -5,22 +5,17 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - echo Installing dependencies...
       - npm install
 
   build:
     commands:
-      - echo Build started on `date`
-      - echo Running app checks...
       - node -v
       - npm -v
       # Do not run the server in build phase unless required
       # This is just build, not start
-      - echo Build phase completed
 
   post_build:
     commands:
-      - echo Post-build started on `date`
 
 artifacts:
   files:
