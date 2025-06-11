@@ -14,20 +14,13 @@ phases:
       - echo Running app checks...
       - node -v
       - npm -v
+      # Do not run the server in build phase unless required
+      # This is just build, not start
       - echo Build phase completed
 
   post_build:
     commands:
       - echo Post-build started on `date`
-      - echo Sending deployment command to EC2 instance...
-      - |
-        aws ssm send-command \
-          --document-name "AWS-RunShellScript" \
-          --instance-ids "i-032ad9b33157f1872" \
-          --comment "Deploy Node.js app" \
-          --parameters 'commands=["cd /home/ec2-user/your-app-folder && git pull origin main && npm install && pm2 restart app"]' \
-          --region ap-south-1 \
-          --output text
 
 artifacts:
   files:
