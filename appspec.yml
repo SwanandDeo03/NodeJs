@@ -2,13 +2,13 @@ version: 0.0
 os: linux
 
 files:
-  - source: /
+  - source: nodejs-app/
     destination: /home/ec2-user/nodejs-app
-    overwrite: yes  # Optional but useful during repeated deployments
+    overwrite: yes
 
 hooks:
   BeforeInstall:
-    - location: scripts/cleanup.sh  # Optional: to stop/delete old code
+    - location: scripts/cleanup.sh
       timeout: 180
       runas: ec2-user
 
